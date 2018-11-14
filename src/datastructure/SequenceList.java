@@ -131,8 +131,15 @@ public class SequenceList<T extends Object> {
 	 * @param array
 	 * @return
 	 */
-	public int addAsArray(Object[] array) {
-		return 0;
+	public boolean addAsArray(T[] array) {
+		int i = 0;
+		for (; i < array.length; i++) {
+			this.add(array[i]);
+		}
+		if (i != array.length) {
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -252,6 +259,13 @@ public class SequenceList<T extends Object> {
 		if (index < 0 || index >= capacity) {
 			throw new IndexOutOfBoundsException("插入位置非法：index=" + index + " capacity：" + capacity);
 		}
+	}
+
+	public static void main(String[] args) {
+		SequenceList<Integer> list = new SequenceList<>();
+		Integer[] array = { 1, 2, 3, 4 };
+		list.addAsArray(array);
+		System.out.println(list);
 	}
 
 }
