@@ -133,13 +133,17 @@ public class SequenceList<T extends Object> {
 	 */
 	public boolean addAsArray(T[] array) {
 		int i = 0;
-		for (; i < array.length; i++) {
-			this.add(array[i]);
+		boolean result = false;
+		try {
+			for (; i < array.length; i++) {
+				this.add(array[i]);
+			}
+		} finally {
+			if (i != array.length) {
+				result = false;
+			}
 		}
-		if (i != array.length) {
-			return false;
-		}
-		return true;
+		return result;
 	}
 
 	/**
@@ -191,24 +195,30 @@ public class SequenceList<T extends Object> {
 	public boolean intersection(SequenceList<T> list) {
 		int i = 0;
 		int w = 0;
-		for (; i < this.length; i++) {
-			T curValue = this.get(i);
-			if (list.indexOf(curValue) != -1) {
-				this.datas[w++] = this.datas[i];
+		boolean result = false;
+		try {
+			for (; i < this.length; i++) {
+				T curValue = this.get(i);
+				if (list.indexOf(curValue) != -1) {
+					this.datas[w++] = this.datas[i];
+				}
 			}
-		}
-		// 异常情况，list中的元素都没有比较完毕，需要处理异常
-		if (i != this.length) {
-			return false;
-		}
-		// 清空w位置后的所有元素
-		if (w != this.length) {
-			for (int k = w; k < this.length; k++) {
-				this.datas[k] = null;
+		} finally {
+			// 异常情况，list中的元素都没有比较完毕，需要处理异常
+			if (i != this.length) {
+				return false;
 			}
+			// 清空w位置后的所有元素
+			if (w != this.length) {
+				for (int k = w; k < this.length; k++) {
+					this.datas[k] = null;
+				}
+			}
+			this.length = w;
+			result = true;
 		}
-		this.length = w;
-		return true;
+		return result;
+
 	}
 
 	@Override
@@ -266,6 +276,13 @@ public class SequenceList<T extends Object> {
 		Integer[] array = { 1, 2, 3, 4 };
 		list.addAsArray(array);
 		System.out.println(list);
+
+		SequenceList<Integer> list2 = new SequenceList<>();
+		Integer[] array2 = { 5, 6, 3, 4 };
+		list2.addAsArray(array2);
+		list.intersection(list2);
+		System.out.println(list);
+
 	}
 
 }
