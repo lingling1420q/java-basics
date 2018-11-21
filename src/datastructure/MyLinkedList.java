@@ -57,17 +57,17 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-	 * Features:在链表的最后添加值
+	 * Features:Insert an element at the end of the LinkedList
 	 */
 	public boolean add(T value) {
 		return this.add(size, value);
 	}
 
 	/**
-	 * Features:在第index位置插入值
+	 * Features:Insert an element at the index position
 	 */
 	public boolean add(int index, T value) {
-		// 寻找第i-1个结点
+		// looking for the NO.i-1 node
 		Node<T> preNode = this.getNodeByIndex(index - 1);
 		Node<T> insertNode = new Node<T>(value, preNode.nextNode);
 		preNode.nextNode = insertNode;
@@ -76,10 +76,10 @@ public class MyLinkedList<T> {
 	}
 
 	/**
-	 * Features:根据索引删除元素
+	 * Features:delete elements by index
 	 */
 	public boolean delete(int index) {
-		// 寻找第i-1个结点
+		// looking for the NO.i-1 node
 		Node<T> preNode = this.getNodeByIndex(index - 1);
 		Node<T> deleteNode = preNode.nextNode;
 		preNode.nextNode = deleteNode.nextNode;
@@ -92,7 +92,7 @@ public class MyLinkedList<T> {
 	 * Features:按索引查找节点
 	 */
 	private Node<T> getNodeByIndex(int index) {
-		// 如果index等于size还是允许查找，因为存在头结点。如果index合法，则必定可以得到结果
+		// 如果index等于size还是允许查找，因为存在头结点。如果index合法，则必定可以找到第index-1个元素
 		if (index > size) {
 			throw new IndexOutOfBoundsException("下标违法：index=" + index + " size=" + size);
 		}

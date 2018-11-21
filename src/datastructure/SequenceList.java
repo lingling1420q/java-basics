@@ -96,8 +96,8 @@ public class SequenceList<T extends Object> {
 	 */
 	public int insert(int index, T value) {
 		ensureInsertIndexLegal(index);
-		for (int j = length; j < index - 1; j--) {
-			datas[j + 1] = datas[j]; // 从尾部开始移动元素
+		for (int j = length; j > index; j--) {
+			datas[j] = datas[j - 1]; // move elements from the tail
 		}
 		datas[index] = value;
 		length++;
@@ -272,15 +272,12 @@ public class SequenceList<T extends Object> {
 	}
 
 	public static void main(String[] args) {
-		SequenceList<Integer> list = new SequenceList<>();
+		SequenceList<Integer> list = new SequenceList<>(10);
 		Integer[] array = { 1, 2, 3, 4 };
 		list.addAsArray(array);
-		System.out.println(list);
 
-		SequenceList<Integer> list2 = new SequenceList<>();
-		Integer[] array2 = { 5, 6, 3, 4 };
-		list2.addAsArray(array2);
-		list.intersection(list2);
+		list.insert(1, 123);
+
 		System.out.println(list);
 
 	}
