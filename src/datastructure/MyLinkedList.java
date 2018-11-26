@@ -112,6 +112,21 @@ public class MyLinkedList<T> {
 		return this.size;
 	}
 
+	/**
+	 * Features:反转链表
+	 */
+	public void reverse() {
+		Node<T> nextNode = firstNode.nextNode;
+		// 头指针置空
+		firstNode.nextNode = null;
+		size = 0;
+		while (nextNode != null) {
+			// 从原始链表的首元素开始不断插入新的链表的第一个位置
+			this.add(0, nextNode.data);
+			nextNode = nextNode.nextNode;
+		}
+	}
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
@@ -141,4 +156,22 @@ public class MyLinkedList<T> {
 		}
 	}
 
+	public static void main(String[] args) {
+		MyLinkedList<Integer> linkedList = new MyLinkedList<>();
+		linkedList.add(1);
+		linkedList.add(2);
+		linkedList.add(3);
+		linkedList.add(4);
+		linkedList.add(5);
+		linkedList.add(6);
+		System.out.println(linkedList);
+		linkedList.reverse();
+		System.out.println(linkedList.get(0));
+		System.out.println(linkedList.get(1));
+		System.out.println(linkedList.get(2));
+		System.out.println(linkedList.get(3));
+		System.out.println(linkedList.get(4));
+		System.out.println(linkedList.get(5));
+		System.out.println(linkedList);
+	}
 }
