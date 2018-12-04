@@ -62,11 +62,12 @@ public class MyStack<T extends Object> {
 	 * 
 	 * @return 返回出栈元素
 	 */
-	public int pop() {
+	public T pop() {
 		if (isEmpty()) {
 			throw new RuntimeException("栈已空，不能再进行出栈操作");
 		}
-		int tmp = (int) datas[top];
+		@SuppressWarnings("unchecked")
+		T tmp = (T) datas[top];
 		datas[top--] = null;
 		length--;
 		return tmp;
@@ -99,5 +100,5 @@ public class MyStack<T extends Object> {
 		sb.append("]");
 		return sb.toString();
 	}
-	
+
 }
