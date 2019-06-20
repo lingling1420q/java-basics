@@ -1,4 +1,4 @@
-# datastructure-algorithm
+# java-basics
 程序结构
 ## 数据结构
 - 顺序表
