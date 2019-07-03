@@ -1,6 +1,7 @@
 package designpattern.state.master;
 
-import state.GumballMachine;
+
+import designpattern.state.GumballMachine;
 
 /**
  * @author kundy
