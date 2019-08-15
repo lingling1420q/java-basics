@@ -1,7 +1,5 @@
 package algorithm;
 
-import sun.jvm.hotspot.utilities.Assert;
-
 import java.util.BitSet;
 
 /**
