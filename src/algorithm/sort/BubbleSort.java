@@ -13,10 +13,10 @@ public class BubbleSort implements Sort {
 
     @Override
     public void go(Integer[] array) {
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = i + 1; j < array.length; j++) {
-                if (array[i] < array[j]) {
-                    this.swap(array, i, j);
+        for (int i = array.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (array[j] < array[j + 1]) {
+                    this.swap(array, j, j + 1);
                 }
             }
         }
