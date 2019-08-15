@@ -2,13 +2,14 @@ package algorithm.sort;
 
 /**
  * 选择排序：
- * 一遍一遍的遍历数组，把最小的元素放在第一位，次小的放在第二位，以此类推。
+ * 一遍一遍的遍历数组，把最小的元素放在第一位，次小的放在第二位，以此类推。【先标记最小元素位置，比完再交换】
  *
  * @author kundy
  * @date 2019/8/15 11:08 PM
  */
-public class SelectSort {
+public class SelectSort implements Sort {
 
+    @Override
     public void go(Integer[] array) {
 
         // i < array.length - 1：最后一个数肯定是最大的，所以最后一个元素不用比较
@@ -23,18 +24,12 @@ public class SelectSort {
         }
     }
 
-    private void swap(Integer[] array, Integer num1, Integer num2) {
-        Integer tmp = array[num1];
-        array[num1] = array[num2];
-        array[num2] = tmp;
-    }
 
     public static void main(String[] args) {
         Integer[] array = new Integer[]{5, 2, 3, 1, 4};
-        new SelectSort().go(array);
-        for (Integer integer : array) {
-            System.out.print(integer + " ");
-        }
+        SelectSort selectSort = new SelectSort();
+        selectSort.go(array);
+        selectSort.print(array);
     }
 
 }
